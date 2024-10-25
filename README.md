@@ -1,8 +1,16 @@
-Hello, my name is Maciej and i'm aspiring to become a data analyst.
+# Introduction
+Are you intrested in data analysis? 👨‍💻 📊 Wanna explore data job’s market?
 
-In order for this I decided to do a project to find out about demanded skills for data analysis based on job offers and expected salary 
+This project gives insight about it! 🔥 I analyzed market for most indemand skills,
 
-For this I need to answer several questions:
+most paying skills and high paying jobs 💰💸 Project mailny focuses on data analyst role
+
+If you are intrested in SQL queries you can check them here [project_sql folder](/project_sql/)
+
+# Background
+My name is Maciej and I aspire to become data analyst. If you are like me, you can definetely check this project! This project was born to find optimal skills to learn (both in demand and high-paying), and find high paying jobs.
+
+## For this we need to answer several questions:
 
 1. What are top-paying jobs for my role?
 2. What are skills required for these jobs?
@@ -10,7 +18,37 @@ For this I need to answer several questions:
 4. What are top skills based on salary for my role?
 5. What are the optimal skills to learn? (both high demand and high paying)
 
-First 2 questions are slightly more long-term, because top-paying jobs are generally for people with high experience, which means that they are probably not available for me right now due to lack of experience,
-but nevertheless it's useful to know them in order to plan long term vision of my career development
+# Tools I Used:
 
-3rd and 5th questions are probably the most important questions for now. As for 3rd question in order to get experience I need to pretty much get any job in data field and knowledge of high in-demand skills opens up more job offers for me. Answer to 5th question gives me information about what to focus on right now.
+- **SQL**: Main tool for my analysis, that allowed me to query the database
+- **VS Code**: My go-to environment for managing databases and executing queries
+- **PostgreSQL**: Chosen database management system
+- **Git and GitHub**: Way to share my work 
+
+# The Anaysis
+
+Each query aims at answering different question,
+to get insight from different aspects of data market
+
+### 1. Top Paying Jobs
+In order to identify top paying jobs I filtered jobs by average yearly salary (excluding jobs with no given salary). Jobs are selected for remote data analyst role 
+ ```sql
+ Select 
+    job_id,
+    job_title,
+    job_location,
+    job_schedule_type,
+    salary_year_avg,
+    job_posted_date,
+    company_dim.name
+from
+    job_postings_fact
+left join company_dim on job_postings_fact.company_id = company_dim.company_id
+where
+    job_title_short like 'Data Analyst' and
+     job_location = 'Anywhere' and
+     salary_year_avg is not null
+order by 
+    salary_year_avg desc
+limit 10
+```
