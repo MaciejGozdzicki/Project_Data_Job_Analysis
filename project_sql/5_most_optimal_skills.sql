@@ -52,7 +52,7 @@ where
     demand_count > 20
 order by
     avg_salary desc
-Limit 30 
+Limit 30  
 
 -- Now let's rewrite this in more compact way
 
